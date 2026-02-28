@@ -10,3 +10,4 @@ C:\Users\a\Desktop\ATD_API\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.dll
 C:\Users\a\Desktop\ATD_API\DataAccessLayer\obj\Debug\net9.0\refint\DataAccessLayer.dll
 C:\Users\a\Desktop\ATD_API\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.pdb
 C:\Users\a\Desktop\ATD_API\DataAccessLayer\obj\Debug\net9.0\ref\DataAccessLayer.dll
+C:\Users\a\Desktop\ATD_API\DataAccessLayer\obj\Debug\net9.0\DataAccessLayer.sourcelink.json

@@ -42,5 +42,7 @@ namespace DataAccessLayer.Entities
         public string? EnableRGBScaleDif { get; set; }
         public string? RGBScaleDif { get; set; }
         public string? EnableMeanScale { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

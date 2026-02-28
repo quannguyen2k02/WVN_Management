@@ -13,3 +13,4 @@ C:\Users\a\Desktop\ATD_API\BusinessLogicLayer\bin\Debug\net9.0\DataAccessLayer.d
 C:\Users\a\Desktop\ATD_API\BusinessLogicLayer\bin\Debug\net9.0\DataAccessLayer.pdb
 C:\Users\a\Desktop\ATD_API\BusinessLogicLayer\obj\Debug\net9.0\BusinessLogicLayer.csproj.AssemblyReference.cache
 C:\Users\a\Desktop\ATD_API\BusinessLogicLayer\obj\Debug\net9.0\Business.450209FB.Up2Date
+C:\Users\a\Desktop\ATD_API\BusinessLogicLayer\obj\Debug\net9.0\BusinessLogicLayer.sourcelink.json

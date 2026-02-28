@@ -141,3 +141,4 @@ C:\Users\a\Desktop\ATD_API\ATD_API\bin\Debug\net9.0\BusinessLogicLayer.pdb
 C:\Users\a\Desktop\ATD_API\ATD_API\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\a\Desktop\ATD_API\ATD_API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\a\Desktop\ATD_API\ATD_API\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\a\Desktop\ATD_API\ATD_API\obj\Debug\net9.0\ATD_API.sourcelink.json
