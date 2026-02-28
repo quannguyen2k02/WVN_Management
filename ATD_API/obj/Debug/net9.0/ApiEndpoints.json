@@ -1,0 +1,75 @@
+[
+  {
+    "ContainingType": "ATD_API.Controllers.LedModelController",
+    "Method": "AddLedModelAsync",
+    "RelativePath": "api/LedModel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ledmodel",
+        "Type": "DataAccessLayer.Entities.LedModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ATD_API.Controllers.LedModelController",
+    "Method": "GetCurrentLedModelAsync",
+    "RelativePath": "api/LedModel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "line",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "devicename",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "model",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "kb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "fp",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ATD_API.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ATD_API.WeatherForecast, ATD_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

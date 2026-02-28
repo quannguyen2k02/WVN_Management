@@ -1,0 +1,659 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "ATD_API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/LedModel": {
+      "post": {
+        "tags": [
+          "LedModel"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LedModel"
+        ],
+        "parameters": [
+          {
+            "name": "line",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "devicename",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "kb",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ledStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "left": {
+            "type": "string",
+            "nullable": true
+          },
+          "top": {
+            "type": "string",
+            "nullable": true
+          },
+          "width": {
+            "type": "string",
+            "nullable": true
+          },
+          "height": {
+            "type": "string",
+            "nullable": true
+          },
+          "areaMin_RGB": {
+            "type": "string",
+            "nullable": true
+          },
+          "areaMax_RGB": {
+            "type": "string",
+            "nullable": true
+          },
+          "holesAreaMin_RGB": {
+            "type": "string",
+            "nullable": true
+          },
+          "holesAreaMax_RGB": {
+            "type": "string",
+            "nullable": true
+          },
+          "blobNum_KBBL": {
+            "type": "string",
+            "nullable": true
+          },
+          "areaMin_Blob": {
+            "type": "string",
+            "nullable": true
+          },
+          "areaMax_Blob": {
+            "type": "string",
+            "nullable": true
+          },
+          "rMin": {
+            "type": "string",
+            "nullable": true
+          },
+          "rMax": {
+            "type": "string",
+            "nullable": true
+          },
+          "gMin": {
+            "type": "string",
+            "nullable": true
+          },
+          "gMax": {
+            "type": "string",
+            "nullable": true
+          },
+          "bMin": {
+            "type": "string",
+            "nullable": true
+          },
+          "bMax": {
+            "type": "string",
+            "nullable": true
+          },
+          "isKBLightTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "thresholdMin": {
+            "type": "string",
+            "nullable": true
+          },
+          "thresholdMax": {
+            "type": "string",
+            "nullable": true
+          },
+          "thresholdMin_KBBL": {
+            "type": "string",
+            "nullable": true
+          },
+          "thresholdMax_KBBL": {
+            "type": "string",
+            "nullable": true
+          },
+          "blobNum": {
+            "type": "string",
+            "nullable": true
+          },
+          "isFlicker": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableRGBScaleDif": {
+            "type": "string",
+            "nullable": true
+          },
+          "rgbScaleDif": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableMeanScale": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedCamera": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ledModelId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "ledStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedStatus"
+            },
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ledId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "kb": {
+            "type": "string",
+            "nullable": true
+          },
+          "fp": {
+            "type": "string",
+            "nullable": true
+          },
+          "ledModelConfigs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedModelConfig"
+            },
+            "nullable": true
+          },
+          "cameras": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedCamera"
+            },
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedModelConfig": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ledModelId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "delay_Status1": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_Status2": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_Status3": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_Status4": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_Status5": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_Audio": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_FPTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_IRTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_FPTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_StatusButtonTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_GetSPKResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "delay_WriteSNToAudio": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableSaveSourcePic": {
+            "type": "string",
+            "nullable": true
+          },
+          "pressedKB": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableAudioTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "skpTestPositionEnable": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableLedTest1": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableLedTest2": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableLedTest3": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableLedTest4": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableLedTest5": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableFPTestStatus1": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableFPTestStatus2": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableFPTestStatus3": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableFPTestStatus4": {
+            "type": "string",
+            "nullable": true
+          },
+          "enableFPTestStatus5": {
+            "type": "string",
+            "nullable": true
+          },
+          "fpPositionX": {
+            "type": "string",
+            "nullable": true
+          },
+          "fpPositionY": {
+            "type": "string",
+            "nullable": true
+          },
+          "fpPositionZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "kbSafeZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "status12PosX": {
+            "type": "string",
+            "nullable": true
+          },
+          "status12PosY": {
+            "type": "string",
+            "nullable": true
+          },
+          "status12PosZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "status23PosX": {
+            "type": "string",
+            "nullable": true
+          },
+          "status23PosY": {
+            "type": "string",
+            "nullable": true
+          },
+          "status23PosZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "status34PosX": {
+            "type": "string",
+            "nullable": true
+          },
+          "status34PosY": {
+            "type": "string",
+            "nullable": true
+          },
+          "status34PosZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "status45PosX": {
+            "type": "string",
+            "nullable": true
+          },
+          "status45PosY": {
+            "type": "string",
+            "nullable": true
+          },
+          "status45PosZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "endPosX": {
+            "type": "string",
+            "nullable": true
+          },
+          "endPosY": {
+            "type": "string",
+            "nullable": true
+          },
+          "endPosZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestPositionX": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestPositionY": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestPositionZ": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestStatus1": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestStatus2": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestStatus3": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestStatus4": {
+            "type": "string",
+            "nullable": true
+          },
+          "spkTestStatus5": {
+            "type": "string",
+            "nullable": true
+          },
+          "readSPKResultStatus1": {
+            "type": "string",
+            "nullable": true
+          },
+          "readSPKResultStatus2": {
+            "type": "string",
+            "nullable": true
+          },
+          "readSPKResultStatus3": {
+            "type": "string",
+            "nullable": true
+          },
+          "readSPKResultStatus4": {
+            "type": "string",
+            "nullable": true
+          },
+          "readSPKResultStatus5": {
+            "type": "string",
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ledCameraId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Job"
+            },
+            "nullable": true
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "LedModel"
+    },
+    {
+      "name": "WeatherForecast"
+    }
+  ]
+}

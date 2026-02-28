@@ -1,0 +1,17 @@
+Visual Studio Temp Files
+
+.vs/
+[Bb]in/
+[Obj]/
+*.user
+*.suo
+*.vsidx
+
+.NET Publish Output
+
+publish/
+
+User-specific files
+
+.idea/
+.vscode/
