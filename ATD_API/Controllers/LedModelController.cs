@@ -1,7 +1,7 @@
 ﻿using BusinessLogicLayer.IServices;
-using DataAccessLayer.Entities;
-using Microsoft.AspNetCore.Http;
+using BusinessLogicLayer.ModelDTOs.LED;
 using Microsoft.AspNetCore.Mvc;
+using OpenQA.Selenium;
 
 namespace ATD_API.Controllers
 {
@@ -15,16 +15,79 @@ namespace ATD_API.Controllers
             _LedModelService = ledModelService;
         }
         [HttpPost]
-        public async Task<IActionResult> AddLedModelAsync(LedModel ledmodel)
+        public async Task<IActionResult> AddLedModelAsync(LedModelDTO ledmodelDTO)
         {
-            var result = await _LedModelService.AddLedModelAsync(ledmodel);
-            return Ok(result);
+            try
+            {
+                var result = await _LedModelService.AddLedModelAsync(ledmodelDTO);
+                return Ok(result);
+
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Internal server error" });
+            }
         }
-        [HttpGet]
-        public async Task<IActionResult> GetCurrentLedModelAsync(string line, string devicename, string model, string kb, string fp)
+        [HttpGet("by-model-version")]
+        public async Task<IActionResult> GetLedModelAsync(string line, string devicename, string model, string kb, string fp)
         {
-            var result = await _LedModelService.GetLedModelAsync(line, devicename, model, kb, fp);
-            return Ok(result);
+            try
+            {
+                var result = await _LedModelService.GetLedModelAsync(line, devicename, model, kb, fp);
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Internal server error" });
+            }
+            
         }
+        [HttpGet("by-device")]
+        public async Task<IActionResult> GetLedModelByDevice([FromQuery] string line, string deviceName)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(line) || string.IsNullOrEmpty(deviceName))
+                {
+                    return BadRequest(new { Message = "Line and DeviceName are required." });
+                }
+                var result = await _LedModelService.GetLedModelsByDevice(line, deviceName);
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Internal server error" });
+            }
+        }
+        [HttpGet("by-id")]
+        public async Task<IActionResult> GetLedModelById(int id)
+        {
+            try
+            {
+                var result = await _LedModelService.GetLedModelById(id);
+                return Ok(result);
+            }
+            catch(NotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Internal server error" });
+            }
+        }
+
     }
 }

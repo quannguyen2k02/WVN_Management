@@ -8,7 +8,7 @@ namespace DataAccessLayer.IRepository
 {
     public interface ILedRepository
     {
-        public Task<int> GetIdDeviceByLineNameAsync(string lineName);
-        public Task<string> GetDeviceNameByIdAsync(int id);
+        public Task<int?> GetDeviceIdByDeviceNameAndLineNameAsync(string deviceName, int lineId);
+        public Task<string?> GetDeviceNameByIdAsync(int id);
     }
 }

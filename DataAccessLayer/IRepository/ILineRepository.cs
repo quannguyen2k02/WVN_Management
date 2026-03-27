@@ -9,7 +9,7 @@ namespace DataAccessLayer.IRepository
     public interface ILineRepository
     {
 
-        public Task<int> GetIdByLineName(string name);
-        public Task<string> GetLineNameById(int id);
+        public Task<int?> GetIdByLineName(string name);
+        public Task<string?> GetLineNameById(int id);
     }
 }

@@ -8,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "ledmodel",
-        "Type": "DataAccessLayer.Entities.LedModel",
+        "Name": "ledmodelDTO",
+        "Type": "BusinessLogicLayer.ModelDTOs.LED.LedModelDTO",
         "IsRequired": true
       }
     ],
@@ -17,8 +17,45 @@
   },
   {
     "ContainingType": "ATD_API.Controllers.LedModelController",
-    "Method": "GetCurrentLedModelAsync",
-    "RelativePath": "api/LedModel",
+    "Method": "GetLedModelByDevice",
+    "RelativePath": "api/LedModel/by-device",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "line",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "deviceName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ATD_API.Controllers.LedModelController",
+    "Method": "GetLedModelById",
+    "RelativePath": "api/LedModel/by-id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ATD_API.Controllers.LedModelController",
+    "Method": "GetLedModelAsync",
+    "RelativePath": "api/LedModel/by-model-version",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

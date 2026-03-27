@@ -1,5 +1,5 @@
 ﻿using DataAccessLayer.Data;
-using DataAccessLayer.Entities;
+using DataAccessLayer.Entities.LED;
 using DataAccessLayer.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,14 +23,16 @@ namespace DataAccessLayer.Repository
             throw new NotImplementedException();
         }
 
-         async Task<LedModel> ILedModelRepository.AddLedModelAsync(LedModel ledModel)
+         public async Task<LedModel> AddLedModelAsync(LedModel ledModel)
         {
+            ledModel.CreateDate = DateTime.Now;
+            ledModel.ModifiedDate = DateTime.Now;
             await _context.LEDModels.AddAsync(ledModel);
             await _context.SaveChangesAsync();
             return ledModel;
         }
 
-        async Task<LedModel> ILedModelRepository.GetLedModelAsync(string line, string devicename, string model, string kb, string fb)
+        public async Task<List<LedModel>> GetLedModelAsync(int deviceId, string model, string kb, string fp)
         {
             // Sử dụng .Include() để nạp các bảng liên quan, tránh bị null dữ liệu
             var result = await _context.LEDModels
@@ -38,10 +40,31 @@ namespace DataAccessLayer.Repository
                 .Include(x => x.Cameras)
                     .ThenInclude(c => c.LedStatuses)
                         .ThenInclude(c => c.Jobs)
-                .Where(x => x.KB == kb && x.FP == fb)
-                .FirstOrDefaultAsync();
+                .Where(x => x.KB == kb && x.FP == fp && x.LedId == deviceId && x.Name.ToLower() == model.ToLower())
+                .OrderBy(x=>x.Id)
+                .ToListAsync();
 
             return result;
+        }
+
+        public async Task<List<LedModel>> GetLedModelsByDeviceIdAsync(int id)
+        {
+            var list = await _context.LEDModels
+                .Where(x => x.LedId == id)
+                // Nhóm các bản ghi trùng Name, Kb, Fp lại với nhau
+                .GroupBy(x => new { x.Name, x.KB, x.FP })
+                .Select(g => g.OrderByDescending(x => x.Id) // Sắp xếp theo ID giảm dần trong mỗi nhóm
+                              .FirstOrDefault())            // Lấy thằng đầu tiên (thằng mới nhất)
+                .ToListAsync();
+
+            return list;
+        }
+
+        public async Task<LedModel> GetLedModelById(int id)
+        {
+            var ledModel = await _context.LEDModels
+                .FindAsync(id);
+            return ledModel;
         }
     }
 }

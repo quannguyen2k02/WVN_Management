@@ -22,7 +22,7 @@ namespace DataAccessLayer.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("DataAccessLayer.Entities.Job", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.Job", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,7 +133,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Job");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LED", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LED", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,10 +157,10 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("LineId");
 
-                    b.ToTable("LEDs");
+                    b.ToTable("LED");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedCamera", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedCamera", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -187,7 +187,169 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("LedCamera");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedModel", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedConfig", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Camera1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera1_Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera2_Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera3_Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera4")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera4_Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera5")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Camera5_Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CheckSN")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Compress")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CompressLevel")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Delay_ClearLine")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Delay_LCDLocation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Delay_NBArrived")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Delay_NBLocation")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Delay_WaitOut")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableFails")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableMonitorCam1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableMonitorCam2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableMonitorCam3")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableMonitorCam4")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableMonitorCam5")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnableNGHold")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Enable_MainBeltWaitManualBelt")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Enable_RGBButton")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Fails")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("InfoName_SFCS")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("InfoValue")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("KeyInfoType_SFCS")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("LedId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LeftToRight")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LineName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RegexAudio")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RegexSN")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ScanError")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("StageCode_SFCS")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_Axis")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_Cylinder")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_NBArrive")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_Scanner")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_ScannerConnectSingle")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Timeout_ScannerConnectTotal")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UniqueCheck_SFCS")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("WebService_Path")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("X_SaftyPosition")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Y_SaftyPosition")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Z_SaftyPosition")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LedId");
+
+                    b.ToTable("LedConfig");
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -220,7 +382,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("LedModel");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedModelConfig", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedModelConfig", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -418,7 +580,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("LedModelConfig");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedStatus", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -445,7 +607,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("LedStatus");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.Line", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.Line", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -467,81 +629,92 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Line");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.Job", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.Job", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.LedStatus", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.LedStatus", null)
                         .WithMany("Jobs")
                         .HasForeignKey("LedStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LED", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LED", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.Line", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.Line", null)
                         .WithMany("Leds")
                         .HasForeignKey("LineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedCamera", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedCamera", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.LedModel", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.LedModel", null)
                         .WithMany("Cameras")
                         .HasForeignKey("LedModelId");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedModel", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedConfig", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.LED", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.LED", null)
+                        .WithMany("LedConfigs")
+                        .HasForeignKey("LedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedModel", b =>
+                {
+                    b.HasOne("DataAccessLayer.Entities.LED.LED", null)
                         .WithMany("LedModels")
                         .HasForeignKey("LedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedModelConfig", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedModelConfig", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.LedModel", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.LedModel", null)
                         .WithMany("LEDModelConfigs")
                         .HasForeignKey("LedModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedStatus", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedStatus", b =>
                 {
-                    b.HasOne("DataAccessLayer.Entities.LedCamera", null)
+                    b.HasOne("DataAccessLayer.Entities.LED.LedCamera", null)
                         .WithMany("LedStatuses")
                         .HasForeignKey("LedCameraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LED", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LED", b =>
                 {
+                    b.Navigation("LedConfigs");
+
                     b.Navigation("LedModels");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedCamera", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedCamera", b =>
                 {
                     b.Navigation("LedStatuses");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedModel", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedModel", b =>
                 {
                     b.Navigation("Cameras");
 
                     b.Navigation("LEDModelConfigs");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.LedStatus", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.LedStatus", b =>
                 {
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Entities.Line", b =>
+            modelBuilder.Entity("DataAccessLayer.Entities.LED.Line", b =>
                 {
                     b.Navigation("Leds");
                 });

@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LedModel"
+                "$ref": "#/components/schemas/LedModelDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LedModel"
+                "$ref": "#/components/schemas/LedModelDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LedModel"
+                "$ref": "#/components/schemas/LedModelDTO"
               }
             }
           }
@@ -34,7 +34,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/LedModel/by-model-version": {
       "get": {
         "tags": [
           "LedModel"
@@ -73,6 +75,56 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LedModel/by-device": {
+      "get": {
+        "tags": [
+          "LedModel"
+        ],
+        "parameters": [
+          {
+            "name": "line",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deviceName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/LedModel/by-id": {
+      "get": {
+        "tags": [
+          "LedModel"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -125,17 +177,9 @@
   },
   "components": {
     "schemas": {
-      "Job": {
+      "JobDTO": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ledStatusId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "name": {
             "type": "string",
             "nullable": true
@@ -255,18 +299,9 @@
         },
         "additionalProperties": false
       },
-      "LedCamera": {
+      "LedCameraDTO": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ledModelId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "name": {
             "type": "string",
             "nullable": true
@@ -274,80 +309,16 @@
           "ledStatuses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/LedStatus"
+              "$ref": "#/components/schemas/LedStatusDTO"
             },
             "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedDate": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false
       },
-      "LedModel": {
+      "LedModelConfigDTO": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ledId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "kb": {
-            "type": "string",
-            "nullable": true
-          },
-          "fp": {
-            "type": "string",
-            "nullable": true
-          },
-          "ledModelConfigs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LedModelConfig"
-            },
-            "nullable": true
-          },
-          "cameras": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LedCamera"
-            },
-            "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "LedModelConfig": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ledModelId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "delay_Status1": {
             "type": "string",
             "nullable": true
@@ -579,29 +550,67 @@
           "readSPKResultStatus5": {
             "type": "string",
             "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedDate": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false
       },
-      "LedStatus": {
+      "LedModelDTO": {
+        "required": [
+          "deviceName",
+          "fp",
+          "kb",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
-          "ledCameraId": {
+          "deviceName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lineName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ledId": {
             "type": "integer",
             "format": "int32"
           },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kb": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "fp": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ledModelConfigs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedModelConfigDTO"
+            },
+            "nullable": true
+          },
+          "cameras": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedCameraDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedStatusDTO": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string",
             "nullable": true
@@ -609,17 +618,9 @@
           "jobs": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Job"
+              "$ref": "#/components/schemas/JobDTO"
             },
             "nullable": true
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedDate": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

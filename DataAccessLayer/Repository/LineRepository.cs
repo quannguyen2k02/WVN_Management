@@ -1,12 +1,6 @@
 ﻿using DataAccessLayer.Data;
-using DataAccessLayer.Entities;
 using DataAccessLayer.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
@@ -17,21 +11,21 @@ namespace DataAccessLayer.Repository
         {
             _context = context;
         }
-        public async Task<int> GetIdByLineName(string name)
+        public async Task<int?> GetIdByLineName(string name)
         {
             var lineId = await _context.Lines
-        .Where(l => l.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-        .Select(l => l.Id)
+        .Where(l => l.Name.ToLower() == name.ToLower())
+        .Select(l =>(int?) l.Id)
         .FirstOrDefaultAsync();
             return lineId;
         }
 
 
-        public async Task<string> GetLineNameById(int id)
+        public async Task<string?> GetLineNameById(int id)
         {
             var lineName = await _context.Lines
                 .Where(l => l.Id == id)
-                .Select(l => l.Name).FirstOrDefaultAsync();
+                .Select(l => (string?)l.Name).FirstOrDefaultAsync();
             return lineName;
         }
     }

@@ -1,5 +1,7 @@
 ﻿using DataAccessLayer.Data;
+using DataAccessLayer.Entities;
 using DataAccessLayer.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +17,16 @@ namespace DataAccessLayer.Repository
         {
             _context = context;
         }
-        public Task<string> GetDeviceNameByIdAsync(int id)
-        {
-            throw new NotImplementedException();
 
+        public async Task<int?> GetDeviceIdByDeviceNameAndLineNameAsync(string deviceName, int lineId)
+        {
+            return await _context.LEDs.Where(x => x.Name == deviceName && x.LineId == lineId).Select(x=> (int?)x.Id).FirstOrDefaultAsync();
         }
 
-        public Task<int> GetIdDeviceByLineNameAsync(string lineName)
+        public async Task<string?> GetDeviceNameByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.LEDs.Where(x=>x.Id == id).Select(x=>x.Name).FirstOrDefaultAsync();
+
         }
     }
 }

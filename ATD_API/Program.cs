@@ -1,5 +1,6 @@
-﻿using BusinessLogicLayer.Services;
+﻿using BusinessLogicLayer.ExternalServices.Mapper;
 using BusinessLogicLayer.IServices;
+using BusinessLogicLayer.Services;
 using DataAccessLayer.Data;
 using DataAccessLayer.IRepository;
 using DataAccessLayer.Repository;
@@ -31,15 +32,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     }
 });
 
-// Đăng ký Dependency Injection (DI)
 builder.Services.AddScoped<ILedModelRepository, LedModelRepository>();
 builder.Services.AddScoped<ILedModelService, LedModelService>();
+builder.Services.AddScoped<ILedRepository, LedRepository>();
+builder.Services.AddScoped<ILineRepository, LineRepository>();
+
+builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 
 var app = builder.Build();
 
-// --- 3. Cấu hình HTTP Request Pipeline (Middleware) ---
-
-// Kích hoạt Swagger UI trong môi trường Development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(); // Tạo file swagger.json
@@ -51,7 +52,12 @@ if (app.Environment.IsDevelopment())
 
     // XÓA DÒNG NÀY NẾU CÓ: app.MapOpenApi();
 }
-
+app.UseSwagger(); // Tạo file swagger.json
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Led Model API V1");
+    c.RoutePrefix = "swagger"; // Truy cập tại: https://localhost:xxxx/swagger
+});
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
