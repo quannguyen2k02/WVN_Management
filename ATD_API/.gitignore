@@ -6,7 +6,7 @@ Visual Studio Temp Files
 *.user
 *.suo
 *.vsidx
-
+[obj]/
 .NET Publish Output
 
 publish/
