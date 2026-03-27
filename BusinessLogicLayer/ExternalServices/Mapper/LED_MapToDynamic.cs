@@ -14,13 +14,11 @@ namespace BusinessLogicLayer.ExternalServices.Mapper
         {
             dynamic result = new ExpandoObject();
 
-            // Các thuộc tính tĩnh
             result.ModelName = model.Name;
             result.KB = model.KB;
             result.TP = model.FP;
             result.CreateDate = model.CreateDate;
 
-            // Lấy config đầu tiên (giả sử chỉ có một config)
             var config = model.LEDModelConfigs?.FirstOrDefault();
             if (config != null)
             {

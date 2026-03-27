@@ -11,9 +11,9 @@ namespace BusinessLogicLayer.IServices
 {
     public interface ILedModelService
     {
-        public Task<LedModel> AddLedModelAsync(LedModelDTO ledModelDTO);
+        public Task<LedModelDTO> AddLedModelAsync(LedModelDTO ledModelDTO);
         public Task<List<dynamic>> GetLedModelAsync(string line, string devicename, string model, string kb, string fp);
-        public Task<List<LedModelDTO>> GetLedModelsByDevice(string line, string devicename);
-        public Task<LedModelDTO> GetLedModelById(int id);
+        public Task<List<dynamic>> GetLedModelsByDevice(string line, string devicename);
+        public Task<dynamic> GetLedModelById(int id);
     }
 }
