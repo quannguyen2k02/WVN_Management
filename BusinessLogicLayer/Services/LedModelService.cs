@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using BusinessLogicLayer.ExternalServices.Mapper;
 using BusinessLogicLayer.IServices;
 using BusinessLogicLayer.ModelDTOs.LED;
 using DataAccessLayer.Entities.LED;
 using DataAccessLayer.IRepository;
 using OpenQA.Selenium;
+using System.Dynamic;
 
 namespace BusinessLogicLayer.Services
 {
@@ -36,7 +38,7 @@ namespace BusinessLogicLayer.Services
             return await _LedModelRepository.AddLedModelAsync(ledModel);
         }
 
-        public async Task<List<LedModelDTO>> GetLedModelAsync(string line, string devicename, string model, string kb, string fp)
+        public async Task<List<dynamic>> GetLedModelAsync(string line, string devicename, string model, string kb, string fp)
         {
             int? lineId = await _LineRepository.GetIdByLineName(line);
             if(!lineId.HasValue)
@@ -46,7 +48,13 @@ namespace BusinessLogicLayer.Services
             if (!deviceId.HasValue)
                 throw new NotFoundException($"Device with name '{devicename}' in line '{line}' was not found.");
 
-            return _mapper.Map<List<LedModelDTO>>( await _LedModelRepository.GetLedModelAsync((int)deviceId, model, kb, fp));
+            var mapped = _mapper.Map<List<LedModelDTO>>( await _LedModelRepository.GetLedModelAsync((int)deviceId, model, kb, fp));
+            var resultList = new List<dynamic>();
+            foreach (var item in mapped)
+            {
+                resultList.Add(LED_MapToDynamic.MapToDynamic(item));
+            }
+            return resultList;
         }
 
         public async Task<List<LedModelDTO>> GetLedModelsByDevice(string line, string devicename)
@@ -68,5 +76,6 @@ namespace BusinessLogicLayer.Services
                 throw new NotFoundException($"Model with ID {id} was not found!"); 
             return _mapper.Map<LedModelDTO>(model);
         }
+
     }
 }
