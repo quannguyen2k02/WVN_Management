@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f52755deffc71ba77cbbe1523710f6a2f22942ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bac75230ca09d306ff7c1d88485a113a74009005")]
 [assembly: System.Reflection.AssemblyProductAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,10 +1,5 @@
 ﻿using BusinessLogicLayer.ModelDTOs.LED;
-using System;
-using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.ExternalServices.Mapper
 {
@@ -46,24 +41,22 @@ namespace BusinessLogicLayer.ExternalServices.Mapper
                 result.kbSafeZ = config.KBSafeZ;
             }
 
-            // Duyệt tất cả job và tạo thuộc tính động
+
             var allJobs = model.Cameras?
                 .SelectMany(c => c.LedStatuses)
                 .SelectMany(ls => ls.Jobs) ?? Enumerable.Empty<JobDTO>();
 
             foreach (var job in allJobs)
             {
-                // Tạo tên thuộc tính, thay thế ký tự không hợp lệ nếu cần (ví dụ dấu gạch ngang vẫn dùng được)
+
                 string roiKey = $"Roi_{job.Name}";
                 string specKey = $"Spec_{job.Name}";
                 string rgbKey = $"RGB_{job.Name}";
 
-                // Định dạng giá trị
                 string roiValue = $"{job.Left}_{job.Top}_{job.Width}_{job.Height}";
                 string specValue = $"{job.AreaMin_RGB}_{job.AreaMax_RGB}"; // Có thể thêm holesArea nếu muốn
                 string rgbValue = $"{job.RMin}_{job.GMin}_{job.BMin}"; // Lấy 3 giá trị min
 
-                // Gán vào ExpandoObject
                 ((IDictionary<string, object>)result)[roiKey] = roiValue;
                 ((IDictionary<string, object>)result)[specKey] = specValue;
                 ((IDictionary<string, object>)result)[rgbKey] = rgbValue;

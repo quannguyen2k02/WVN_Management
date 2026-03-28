@@ -33,11 +33,11 @@ namespace ATD_API.Controllers
             }
         }
         [HttpGet("by-model-version")]
-        public async Task<IActionResult> GetLedModelAsync(string line, string devicename, string model, string kb, string fp)
+        public async Task<IActionResult> GetLedModelAsync([FromQuery] string line, [FromQuery] string devicename, [FromQuery] string model, [FromQuery] string kb, [FromQuery] string fp, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
             try
             {
-                var result = await _LedModelService.GetLedModelAsync(line, devicename, model, kb, fp);
+                var result = await _LedModelService.GetLedModelAsync(line, devicename, model, kb, fp, pageNumber, pageSize);
                 return Ok(result);
             }
             catch (NotFoundException ex)
@@ -51,7 +51,7 @@ namespace ATD_API.Controllers
             
         }
         [HttpGet("by-device")]
-        public async Task<IActionResult> GetLedModelByDevice([FromQuery] string line, string deviceName)
+        public async Task<IActionResult> GetLedModelByDevice([FromQuery] string line, [FromQuery] string deviceName, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace ATD_API.Controllers
                 {
                     return BadRequest(new { Message = "Line and DeviceName are required." });
                 }
-                var result = await _LedModelService.GetLedModelsByDevice(line, deviceName);
+                var result = await _LedModelService.GetLedModelsByDevice(line, deviceName, pageNumber, pageSize);
                 return Ok(result);
             }
             catch (NotFoundException ex)
@@ -68,7 +68,7 @@ namespace ATD_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Internal server error" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = ex.Message });
             }
         }
         [HttpGet("by-id")]
