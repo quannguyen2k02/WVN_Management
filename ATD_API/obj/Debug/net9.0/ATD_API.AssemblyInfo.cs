@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bac75230ca09d306ff7c1d88485a113a74009005")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fade74cc2b334a2581f88c1abb4e1b1066ed7773")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ATD_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
